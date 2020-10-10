@@ -28,3 +28,16 @@
 ### 5.) Deceased person graph
 #####  -> If we want to know the spread of corona virus in the city, it can be known through the given grapgh
 #####  -> We can directly download the graph or we can get it to our mail id
+
+## Future Application
+
+##### 1.) Everyone can know the live updates of corona cases and its effects from where ever they want
+##### 2.) Extra features like Corona cases in citywise can be displayed in graphwise, so that person can decide about the travel to the specific city
+##### 3.) By knowing the ratio of affected persons and the death warning zones can be marked so that people can take necessary steps
+
+## Constraints
+
+##### The website we designed has few limitations which can be updated in fothcoming updates...
+##### Some of the main constraints are,
+##### 1.) The website is hosted locally not globally
+##### 2.) The website wont fit for all screen sizes
