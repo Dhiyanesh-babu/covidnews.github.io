@@ -41,3 +41,7 @@
 ##### Some of the main constraints are,
 ##### 1.) The website is hosted locally not globally
 ##### 2.) The website wont fit for all screen sizes
+
+## Status of project
+#### Task 1,2,3 has been done completely With both front end and backend
+#### Task 4 the backend ( python code ) to extract and display the respective graph is done  
