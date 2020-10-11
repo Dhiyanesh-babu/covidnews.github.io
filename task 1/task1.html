@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="task1.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="primary_contacts">
+            <h1 style="text-align: center;">Primary Contacts</h1>
+            <table class="tab" >
+                <tr>
+                  <td>Contact number:</td>
+                  <td >+91-11-23978046</td>
+                </tr>
+                <tr>
+                  <td>Toll free number:</td>
+                  <td>1075</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>ncov2019@gov.in</td>
+                </tr>
+                <tr>
+                    <td>Twitter:</td>
+                    <td ><a style="text-decoration:none" href="https://twitter.com/MoHFW_INDIA" target="_blank">twitter.com/MoHFW_INDIA</a></td>
+                </tr>
+                <tr>
+                    <td>Facebook:</td>
+                    <td><a  style="text-decoration:none" href="https://www.facebook.com/MoHFWIndia" target="_blank">facebook.com/MoHFWIndia</a></td>
+                </tr>
+                <tr>
+                    <td>Media:</td>
+                    <td><a  style="text-decoration:none" href="https://pib.gov.in/newsite/pmreleases.aspx?mincode=31" target="_blank">pib.gov.in/newsite/pmreleases.aspx?mincode=31</a></td>
+                </tr>
+            </table>
+        </div>
+    
+    </body>
+    <body>
+        <div class="edit_1">
+        <h1 font-size:32px>Helpline-Numbers:</h1>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input style="font-size:25px ;width: 370px;" placeholder="Select State" list="states" name="state" id="state">
+        <datalist id="states">
+        <form>
+                <option value="Andhra Pradesh"> </option>
+                <option value="Arunachal Pradesh"> </option>
+                <option value="Assam">  </option>
+                <option value="Bihar">  </option>
+                <option value="Chhattisgarh"></option>
+                <option value="Goa"> </option>
+                <option value="Gujarat"> </option>
+                <option value="Haryana"> </option>
+                <option value="Himachal Pradesh"> </option>
+                <option value="Jharkhand"></option>
+                <option value="Karnataka"> </option>
+                <option value="Kerala"> </option>
+                <option value="Madhya Pradesh"> </option>
+                <option value="Maharashtra"> </option>
+                <option value="Manipur"> </option>
+                <option value="Meghalaya"> </option>
+                <option value="Mizoram"></option>
+                <option value="Nagaland"> </option>
+                <option value="Odisha"> </option>
+                <option value="Punjab"> </option>
+                <option value="Rajasthan"> </option>
+                <option value="Sikkim"></option>
+                <option value="Tamil Nadu"> </option>
+                <option value="Telengana"> </option>
+                <option value="Tripura"> </option>
+                <option value="Uttarakhand"> </option>
+                <option value="Uttar Pradesh"> </option>
+                <option value="West Bengal"> </option>
+                <option value="Andaman and Nicobar Islands"> </option>
+                <option value="Chandigarh"> </option>
+                <option value="Dadra and Nagar Haveli"> </option>
+                <option value="Daman & Diu"></option>
+                <option value="Delhi"> </option>
+                <option value="Jammu and Kashmir"> </option>
+                <option value="Ladakh"> </option>
+                <option value="Lakshadweep"> </option>
+                <option value="Puducherry"></option>
+        </form>
+        </datalist> &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <button style="font-size:25px ;" onclick="myfn()" >Submit</button>
+        
+
+
+
+
+
+
+        <!-- table for showing data -->
+        <table id="employees" style="border: 3px solid #479ed8"></table> 
+    
+        <script>
+            // api url 
+            function myfn(){
+            const api_url = "https://api.rootnet.in/covid19-in/contacts"; 
+            const Value = document.querySelector('#state').value;
+    
+            // Defining async function 
+            async function getapi(url) { 
+                
+                // Storing response 
+                const response = await fetch(url); 
+                
+                // Storing data in form of JSON 
+                var data = await response.json(); 
+                console.log(data); 
+                show(data); 
+            } 
+            // Calling that async function 
+            getapi(api_url); 
+    
+            // Function to hide the loader 
+            // Function to define innerHTML for HTML table 
+            function show(data) { 
+                let tab = 
+                    `<tr class="table">
+                    <th>State</th> 
+                    <th>Number</th> 
+                    </tr>`; 
+                
+                // Loop to access all rows 
+                for (let r of data.data.contacts.regional) { 
+                    if(r.loc== Value){
+                    tab += `<tr> 
+                <td>${r.loc} </td> 
+                <td>${r.number}</td> 		 
+            </tr>`; 
+                    }
+    
+                } 
+                // Setting innerHTML as tab variable 
+                document.getElementById("employees").innerHTML = tab; 
+            } 
+            }
+    
+        </script>
+        </div>
+    </body>
+    <img src="xyz.gif" style="position:absolute;top:45%;left: 13%;width :25%">
+        <body>
+            <div class="des_1" style="text-align: center;">
+                <p> Due to a high volume of inquiries, it may take longer than usual to receive 
+                    a reply from CDC-INFO.</p>
+                <p>We appreciate your patience.</p>
+                <p> If you are a healthcare provider with an urgent inquiry, or a member of the general public with an urgent information need, </p>
+                <p>please call 800-CDC-INFO (800-232-4636) for timely assistance.</p>
+            </div>
+        </body>
+</html>

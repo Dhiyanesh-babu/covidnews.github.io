@@ -1,0 +1,65 @@
+.primary_contacts{
+    background-color:#479ed8;
+    font-size: 25px;
+    color: white;
+    font-family: sans-serif;
+}
+a:hover {
+    color: red;
+}
+a:link{
+    color:white;
+}
+a:active{
+    color:rgb(255, 255, 255);
+}
+a:visited{
+    color:none;
+}
+
+.tab { 
+    width:80%;
+    margin-left: 27%;
+    border: 7px solid #479ed8
+} 
+
+
+table {
+    margin-top: 30px;
+    width: 60%;
+    margin-left: 40px;
+  }
+th, td {
+    text-align: left;
+    padding: 8px;
+    font-size:25px;
+  }
+  th {
+    background-color: #479ed8;
+    color: white;
+    border-color:  black;
+  }
+  .edit_1{
+    font-family: sans-serif;
+    position:fixed;
+    box-sizing: border-box;
+    background-color: #d7eaf7;
+    position: absolute;
+    top:50%;
+    width: 50%;
+    left:45%;
+    height: 40%;
+    box-shadow: 5px 5px 5px 5px rgb(79, 188, 231);
+}
+.des_1{
+    text-align:center;
+    background-color: #479ed8;
+    font-size: 25px;
+    font-family: sans-serif;
+    color: white;
+    margin-top:28%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
