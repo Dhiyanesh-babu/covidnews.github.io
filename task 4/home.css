@@ -1,0 +1,17 @@
+.graph{
+    background-color:#479ed8;
+    font-size: 25px;
+    color: white;
+    font-family: sans-serif;
+}
+.pc2{
+    display: grid;
+    grid-template-columns: 45% 55%;
+}
+  .edit_4{
+    font-family: sans-serif;
+    box-sizing: border-box;
+    background-color: #d7eaf7;
+    box-shadow: 5px 5px 5px 5px rgb(79, 188, 231);
+    height: 25rem;
+}
