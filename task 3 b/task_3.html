@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="task_3.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box3b">
+        &nbsp;
+        <h1 style="text-align: center;font-size: 50px;">Colleges and beds available</h1>
+        &nbsp;
+    </div>
+
+    <body style="font-family: sans-serif;">
+    <div class="edit3b">
+    <h1 style="font-size:32px">Medical College Information:</h1>
+    
+    <input class="input3b"placeholder="Select State" list="states" class="list" name="state" id="state" onchange="fillnext()">
+    <datalist id="states" >
+    <form>
+            <option value="Andhra Pradesh"> </option>
+            <option value="Arunachal Pradesh"> </option>
+            <option value="Assam">  </option>
+            <option value="Bihar">  </option>
+            <option value="Chhattisgarh"></option>
+            <option value="Goa"> </option>
+            <option value="Gujarat"> </option>
+            <option value="Haryana"> </option>
+            <option value="Himachal Pradesh"> </option>
+            <option value="Jharkhand"></option>
+            <option value="Karnataka"> </option>
+            <option value="Kerala"> </option>
+            <option value="Madhya Pradesh"> </option>
+            <option value="Maharashtra"> </option>
+            <option value="Manipur"> </option>
+            <option value="Meghalaya"> </option>
+            <option value="Mizoram"></option>
+            <option value="Nagaland"> </option>
+            <option value="Odisha"> </option>
+            <option value="Punjab"> </option>
+            <option value="Rajasthan"> </option>
+            <option value="Sikkim"></option>
+            <option value="Tamil Nadu"> </option>
+            <option value="Telengana"> </option>
+            <option value="Tripura"> </option>
+            <option value="Uttarakhand"> </option>
+            <option value="Uttar Pradesh"> </option>
+            <option value="West Bengal"> </option>
+            <option value="A & N Islands"> </option>
+            <option value="Chandigarh"> </option>
+            <option value="Dadra and Nagar Haveli"> </option>
+            <option value="Daman & Diu"></option>
+            <option value="Delhi"> </option>
+            <option value="Jammu and Kashmir"> </option>
+            <option value="Ladakh"> </option>
+            <option value="Lakshadweep"> </option>
+            <option value="Puducherry"></option>
+    </form>
+    </datalist> &nbsp;&nbsp;
+    <select id="arr" style="font-size:15px ;height:32px;width: 370px" ></select> 
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button onclick="myfn()" style="font-size: 23px;">Submit</button>
+    <!-- table for showing data -->
+    <table id="employees" style="border: 3px solid #479ed8;width: 40 px"></table> 
+    <p id="demo"></p>
+        <script>
+            const api_url = "https://api.rootnet.in/covid19-in/hospitals/medical-colleges"; 
+        // Defining async function 
+        async function getapi(url) { 
+            
+            // Storing response 
+            const response = await fetch(url); 
+            
+            // Storing data in form of JSON 
+            var data = await response.json(); 
+            return(data.data);
+        }
+        function removeOptions(selectElement) {
+        var i, L = selectElement.options.length - 1;
+         for(i = L; i >= 0; i--) {
+         selectElement.remove(i);
+         }
+        }
+        function fillnext(){
+            removeOptions(document.getElementById('arr'));
+            const V = document.querySelector('#state').value;
+            var select = document.getElementById("arr");
+            data=getapi(api_url).then(data=>{ 
+                            let item =[];
+                            let i=0;
+                for (let r of data.medicalColleges) { 
+                    if(r.state==V){
+                        var el=document.createElement("option");
+                        el.textContent=r.name;
+                        el.value=r.name;
+                        select.appendChild(el);
+                    }
+                }
+            }
+            );
+            }
+            function myfn(){
+                const V = document.querySelector('#state').value;
+                var select = document.querySelector("#arr").value;
+                console.log(select);
+                data=getapi(api_url).then(data=>{ 
+                    let tab = 
+                `<tr> 
+                <th>State</th> 
+                <th>Name</th>
+                <th>City</th> 
+                <th>Ownership</th>
+                <th>Admission Capacity</th>
+                <th>Hospital Beds</th>
+                
+                </tr>`; 
+            
+            // Loop to access all rows 
+            for (let r of data.medicalColleges) { 
+                if(r.state== V && r.name==select){
+                tab += `<tr> 
+            <td>${r.state} </td> 
+            <td>${r.name}</td> 
+            <td>${r.city} </td>
+            <td>${r.ownership} </td>
+            <td>${r.admissionCapacity} </td>
+            <td>${r.hospitalBeds} </td>		 
+        </tr>`; 
+                }
+            } 
+            // Setting innerHTML as tab variable 
+            document.getElementById("employees").innerHTML = tab; 
+    
+             });
+
+            }
+        </script>
+    </div>
+
+<img src="12345.jpg" class="image3b">
+
+<div class="textbox3b" >
+    <p>Medical colleges and the beds availability are given. 
+        Some of the general guidelines to be followed at all the quarantine centres are,</p>
+    <p> 1.)	 Avoid crowd gatherings
+    <p> 2.)	 Check your body temperature twice a day
+    <p> 3.)	 Use respiratory etiquettes ( Mask, tissues )
+    <p> 4.)	 Maintain personal hygiene
+    <p> 5.)	 Report to nearest health facility if you develop fever, cough or difficulty in breathing 
+    <p> 6.)	 Wash your hands with soap and water frequently.
+</div>
+</body>
+</html>
