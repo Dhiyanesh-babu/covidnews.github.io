@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="task_2.css">
+</head>
+<body>
+    <div class="guide">
+        &nbsp;
+        <h1 style="text-align: center;font-size: 50px;">Guidelines and Advisories</h1>
+        &nbsp;
+    </div>
+    <div class="edit_2">
+    <h1 style="font-size:32px">Guidelines Issued:</h1>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input style="height:25px;font-size:25px;width:200px" type="date" id="date" onchange="fillnext()"> 
+    <select id="arr"></select> 
+&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" style="width:100px;font-size:25px;height:35px" value="Submit" onClick="myfn()">
+    <table id="employees" style="border: 3px solid #479ed8"></table> 
+
+
+
+
+    <script language="javascript">
+     const api_url = "https://api.rootnet.in/covid19-in/notifications"; 
+        // Defining async function 
+        async function getapi(url) { 
+            
+            // Storing response 
+            const response = await fetch(url); 
+            
+            // Storing data in form of JSON 
+            var data = await response.json(); 
+            return(data.data);
+        }
+        function removeOptions(selectElement) {
+        var i, L = selectElement.options.length - 1;
+         for(i = L; i >= 0; i--) {
+         selectElement.remove(i);
+         }
+        }
+        function formatDate (input) {
+        var datePart = input.split('-'),
+        year = datePart[0];// get only two digits
+        month = datePart[1];
+        day = datePart[2];
+
+        return day+'.'+month+'.'+year;
+        }
+        function fillnext(){
+            removeOptions(document.getElementById("arr"));
+            var V = document.querySelector('#date').value;
+            V=formatDate(V);
+            var select = document.getElementById("arr");
+            data=getapi(api_url).then(data=>{ 
+                for (let r of data.notifications) { 
+                    if(r.title.substring(0,10)==V){
+                        var el=document.createElement("option");
+                        el.textContent=r.title.substring(10);
+                        el.value=r.title.substring(10);
+                        select.appendChild(el);
+                    }
+                    //console.log(r.title.substring(0,10));
+                }
+            }
+            );
+         }
+         function myfn(){
+                var V = document.querySelector('#date').value;
+                V=formatDate(V);
+                var select = document.querySelector("#arr").value;
+                data=getapi(api_url).then(data=>{ 
+                let tab = 
+                `<tr> 
+                <th>Date</th> 
+                <th>Type</th>
+                <th>Link</th>
+                </tr>`; 
+            
+            // Loop to access all rows 
+            for (let r of data.notifications) { 
+                if(r.title.substring(0,10)==V && r.title.substring(10)==select){
+                tab += `<tr> 
+            <td>${r.title.substring(0,10)}</td> 
+            <td>${r.title.substring(10)}</td> 
+            <td>${r.link}</td>		 
+            </tr>`; 
+                }
+            } 
+            // Setting innerHTML as tab variable 
+            document.getElementById("employees").innerHTML = tab; 
+            });
+        }
+
+</script>
+</div>
+<img src="photo.jpg" style="
+position:absolute;
+top: 33%;
+left: 15%;width :20%">
+    <div class="des_2" style="text-align: center;font-family:sans-serif">
+        <p style="color: white;font-size:25px">Many Guidelines are issued by the government on various Domains. 
+        Some of the important guidelines to be read are,</p>
+        <p>1.) 24.05.2020 Guidelines for domestic travel</p>
+        <p>2.) 03.2020 Do's and Don't Poster</p>
+        <p>3.) 23.03.2020 Posters for Safety measures against COVID-19</p>
+        <p>4.) 25.03.2020 Role of Frontline Workers in Prevention and Management of CORONA VIRUS</p>
+        <p>5.) 28.03.2020 When to get tested for COVID-19</p>
+        <p>7.) 31.03.2020 Handling Public Grievances pertaining to COVID-19 in M/o Health & Family Welfare</p>
+        <p>10.) 05.04.2020 Guidelines for Quarantine facilities COVID-19</p>
+    </div>
+    </body>
+</html>
