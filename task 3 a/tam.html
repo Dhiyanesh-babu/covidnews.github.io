@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="tim.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <h1 style="text-align: center;font-size:50 px">Hospitals and beds available</h1>
+        <table style="border: 7px solid #479ed8" class="tab" >
+            <tr>
+              <td style="font-size:30px;">Rural hospitals:</td>
+              <td style="color:#d5e9f7">39620</td>
+              <td style="font-size:30px;">Rural beds:</td>
+              <td style="color:#d5e9f7">559716</td>
+            </tr>
+            <tr>
+              <td style="font-size:30px;">Urban hospitals:</td>
+              <td style="color:#d5e9f7">7544</td>
+              <td style="font-size:30px;">Urban beds:</td>
+              <td style="color:#d5e9f7">862346</td>
+            </tr>
+            <tr>
+                <td style="font-size:30px;">Total hospitals:</td>
+                <td style="color:#d5e9f7">47164</td>
+                <td style="font-size:30px;">Total beds:</td>
+                <td style="color:#d5e9f7">1421522</td>
+            </tr>
+          </table>
+    </div>
+</body>
+<body style="font-family: sans-serif;">
+    <div class="edit">
+    <h2 style="font-size:32px">Hospital info:</h2>
+    
+    <input style="font-size:25px ;width: 370px"placeholder="Select State" list="states" class="list" name="state" id="state">
+    <datalist id="states">
+    <form>
+            <option value="Andhra Pradesh"> </option>
+            <option value="Arunachal Pradesh"> </option>
+            <option value="Assam">  </option>
+            <option value="Bihar">  </option>
+            <option value="Chhattisgarh"></option>
+            <option value="Goa"> </option>
+            <option value="Gujarat"> </option>
+            <option value="Haryana"> </option>
+            <option value="Himachal Pradesh"> </option>
+            <option value="Jharkhand"></option>
+            <option value="Karnataka"> </option>
+            <option value="Kerala"> </option>
+            <option value="Madhya Pradesh"> </option>
+            <option value="Maharashtra"> </option>
+            <option value="Manipur"> </option>
+            <option value="Meghalaya"> </option>
+            <option value="Mizoram"></option>
+            <option value="Nagaland"> </option>
+            <option value="Odisha"> </option>
+            <option value="Punjab"> </option>
+            <option value="Rajasthan"> </option>
+            <option value="Sikkim"></option>
+            <option value="Tamil Nadu"> </option>
+            <option value="Telengana"> </option>
+            <option value="Tripura"> </option>
+            <option value="Uttarakhand"> </option>
+            <option value="Uttar Pradesh"> </option>
+            <option value="West Bengal"> </option>
+            <option value="Andaman and Nicobar Islands"> </option>
+            <option value="Chandigarh"> </option>
+            <option value="Dadra and Nagar Haveli"> </option>
+            <option value="Daman & Diu"></option>
+            <option value="Delhi"> </option>
+            <option value="Jammu and Kashmir"> </option>
+            <option value="Ladakh"> </option>
+            <option value="Lakshadweep"> </option>
+            <option value="Puducherry"></option>
+    </form>
+    </datalist> &nbsp;&nbsp;&nbsp;&nbsp;
+    <button onclick="myfn()" style="font-size:25px">Submit</button>
+    <!-- table for showing data -->
+    <table id="employees" style="border: 3px solid #479ed8;width: 40 px;"></table> 
+    <script>
+        // api url 
+        function myfn(){
+        const api_url = "https://api.rootnet.in/covid19-in/hospitals/beds"; 
+        const Value = document.querySelector('#state').value;
+
+        // Defining async function 
+        async function getapi(url) { 
+            
+            // Storing response 
+            const response = await fetch(url); 
+            
+            // Storing data in form of JSON 
+            var data = await response.json(); 
+            console.log(data); 
+            show(data); 
+        } 
+        // Calling that async function 
+        getapi(api_url); 
+
+        // Function to hide the loader 
+        // Function to define innerHTML for HTML table 
+        function show(data) { 
+            let tab = 
+                `<tr> 
+                <th>State</th> 
+                <th>Rural Hospitals</th> 	
+                <th>Rural Beds</th>
+                <th>Urban Hospitals</th>
+                <th>Urban Beds</th>
+                <th>Total Hospitals</th>
+                <th>Total Beds</th> 
+                </tr>`; 
+            
+            // Loop to access all rows 
+            for (let r of data.data.regional) { 
+                if(r.state== Value){
+                tab += `<tr> 
+            <td>${r.state} </td> 
+            <td>${r.ruralHospitals}</td> 	
+            <td>${r.ruralBeds}</td>
+            <td>${r.urbanHospitals}</td>
+            <td>${r.urbanBeds}</td>
+            <td>${r.totalHospitals}</td>
+            <td>${r.totalBeds}</td>
+        </tr>`; 
+                }
+            } 
+            // Setting innerHTML as tab variable 
+            document.getElementById("employees").innerHTML = tab; 
+        } 
+        }
+
+    </script>
+    </div>
+</body>
+<img src="abcde.jpg" style="
+position:absolute;
+top:33%;
+left: 13%;width :25%">
+<body>
+    <div class="boxxx" style="text-align: center;font-family:sans-serif">
+        <p style="color: white;font-size:25px">While we are quarantined in any of the hospitals Some of the 
+            general things to be for the best recovery are,</p>
+        <p> 1.)	Do some exercises</p>
+        <p> 2.)	Have a peaceful mind</p>
+        <p> 3.)	Eat healthy foods</p>
+        <p> 4.)	Have a good sleep</p>
+    </div>
+</body>
+</html>
